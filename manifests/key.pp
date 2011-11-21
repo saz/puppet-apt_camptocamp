@@ -20,6 +20,7 @@ define apt::key($ensure=present, $source="", $content="") {
         command => "${thekey} | apt-key add -",
         unless => "apt-key list | grep -Fqe '${name}'",
         path   => "/bin:/usr/bin",
+        user => root,
         before => Exec["apt-get_update"],
         notify => Exec["apt-get_update"],
       }
@@ -28,6 +29,7 @@ define apt::key($ensure=present, $source="", $content="") {
     absent: {
       exec {"apt-key del ${name}":
         onlyif => "apt-key list | grep -Fqe '${name}'",
+        user => root,
       }
     }
 
