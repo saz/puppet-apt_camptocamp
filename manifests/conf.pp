@@ -9,5 +9,4 @@ define apt::conf($ensure, $content = undef, $source = undef) {
       before  => Exec["apt-get_update"],
       notify  => Exec["apt-get_update"],
     }
-  }
 }
