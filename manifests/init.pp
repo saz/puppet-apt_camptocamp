@@ -3,7 +3,7 @@ class apt {
   include apt::params
 
   # Run apt-get update before any package will be installed
-  Exec['apt-get_update] -> Package <| |>
+  Exec['apt-get_update'] -> Package <| |>
 
   # apt support preferences.d since version >= 0.7.22
   case $lsbdistcodename { 
