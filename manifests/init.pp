@@ -28,6 +28,8 @@ class apt {
   # ensure only files managed by puppet be present in this directory.
   file { "/etc/apt/sources.list.d":
     ensure  => directory,
+    owner   => 'root',
+    group   => 'root',
     source  => "puppet:///modules/apt/empty/",
     recurse => "${apt::params::manage_sourceslist}",
     purge   => "${apt::params::manage_sourceslist}",
