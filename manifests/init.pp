@@ -3,7 +3,9 @@ class apt {
   include apt::params
 
   # Run apt-get update before any package will be installed
-  Exec['apt-get_update'] -> Package <| |>
+  # TODO: testing prerun_command set to 'apt-get update' to update before
+  # before every puppet run
+  #Exec['apt-get_update'] -> Package <| |>
 
   # apt support preferences.d since version >= 0.7.22
   case $lsbdistcodename { 
@@ -44,5 +46,8 @@ class apt {
 
   exec { "apt-get_update":
     command => "apt-get update",
+    # TODO: testing prerun_command set to 'apt-get update' to update before
+    # before every puppet run
+    refreshonly => true,
   }
 }
